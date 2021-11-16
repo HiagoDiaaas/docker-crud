@@ -11,7 +11,7 @@ public class DemoApplication {
 	
 	@GetMapping("/message")
 	public String getMessage() {
-		return "Welcome to Hiago Dias 2";
+		return "Version 3";
 	}
 
 	public static void main(String[] args) {
