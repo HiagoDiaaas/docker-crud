@@ -1,6 +1,7 @@
 services:
   adminer:
     image: adminer
+    container_name: adminer
     ports:
       - 8888:8080
     networks:
@@ -19,7 +20,7 @@ services:
     image: backend:latest
     build:
       context: .
-    container_name: app
+    container_name: app_backend
     depends_on:
       - db
     ports:
@@ -31,6 +32,13 @@ services:
       - SPRING_DATASOURCE_USERNAME=compose-postgres
       - SPRING_DATASOURCE_PASSWORD=compose-postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  frontend:
+    image: frontend:latest
+    container_name: app_frontend
+    ports:
+      - 3000:3000
+    networks:
+      - spring-cloud-network      
 networks:
     spring-cloud-network:
         driver: bridge
